@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/ResponseManipulation.css" />
+    <title>@ViewData["Title"] - Response Manipulation</title>
+</head>
+<body>
+    <div class="header-container">
+        <h1>Response Manipulation E-commerce</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="@Url.Action("Product", "ResponseManipulation")">Products</a></li>
+                <li><a href="@Url.Action("Cart", "ResponseManipulation")">Cart</a></li>
+                <li><a href="/Contact">Contact Us</a></li>
+                <li><a href="/About">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

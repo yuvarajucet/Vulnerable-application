@@ -1,0 +1,172 @@
+﻿@model VulnSync.Models.AccountTakeover.User
+
+@{
+    // Store model data in local variables with fallback values
+    var username = !string.IsNullOrEmpty(Model?.Username) ? Model.Username : "Default Username";
+    var email = !string.IsNullOrEmpty(Model?.Email) ? Model.Email : "Default Email";
+    var password = !string.IsNullOrEmpty(Model?.Password) ? Model.Password : "Default Password";
+    var personalDetails = !string.IsNullOrEmpty(Model?.PersonalDetails) ? Model.PersonalDetails : "No details available";
+    var passkeyStatus = !string.IsNullOrEmpty(Model?.PasskeyStatus) ? Model.PasskeyStatus : "Unavailable";
+
+    // Additional hidden input values
+    var id = !string.IsNullOrEmpty(Model?.id) ? Model.rawId : string.Empty;
+    var rawId = !string.IsNullOrEmpty(Model?.rawId) ? Model.rawId : string.Empty;
+    var type = !string.IsNullOrEmpty(Model?.type) ? Model.type : string.Empty;
+    var attestationObject = !string.IsNullOrEmpty(Model?.attestationObject) ? Model.attestationObject : string.Empty;
+    var clientDataJSON = !string.IsNullOrEmpty(Model?.clientDataJSON) ? Model.clientDataJSON : string.Empty;
+    var userAgent = !string.IsNullOrEmpty(Model?.UserAgent) ? Model.UserAgent : string.Empty;
+}
+
+<!-- User Dashboard Container -->
+<div class="dashboard-container">
+    <div class="card">
+        <h2>User Dashboard</h2>
+
+        <!-- User Information Section -->
+        <div class="user-info">
+            <div class="info-item">
+                <strong>ID:</strong> @Model.UserId
+            </div>
+            <div class="info-item">
+                <strong>UserName:</strong> @username
+            </div>
+            <div class="info-item">
+                <strong>Email:</strong> @email
+            </div>
+            <div class="info-item">
+                <strong>Password:</strong> @password
+            </div>
+            <div class="info-item">
+                <strong>Personal details:</strong> @personalDetails
+            </div>
+        </div>
+
+        <!-- Passkey Section -->
+        <div class="passkey-section">
+            <h3>Passkey</h3>
+            <div class="info-item">
+                <strong>Passkey Status:</strong> @passkeyStatus
+            </div>
+            <!-- Trigger the modal -->
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#passkeyModal">
+                @passkeyStatus
+            </button>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div class="contact-us-section">
+            <h3>Contact Us</h3>
+            <p>If you have any issues or questions, feel free to contact us.</p>
+                <div class="form-group">
+                    <label for="message">Your Message:</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Submit Inquiry</button>
+        </div>
+
+        <!-- Buttons: Edit Details and Logout -->
+        <div class="actions">
+            <form asp-controller="AccountTakeover" asp-action="CustomerEditOption" method="get" class="edit-button-form">
+                <input type="hidden" name="id" value="@Model.UserId" />
+                <button type="submit" class="btn btn-primary">Edit Details</button>
+            </form>
+            <a href="@Url.Action("VulnerableLogout", "AccountTakeover")" class="btn btn-danger logout-btn">Logout</a>
+        </div>
+    </div>
+</div>
+
+<!-- Passkey Modal -->
+<div class="modal fade" id="passkeyModal" tabindex="-1" aria-labelledby="passkeyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="passkeyModalLabel">Authentication</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="AccountTakeover" asp-action="RegisterPasskey" method="post">
+                    <input type="hidden" name="id" value="@id" />
+                    <input type="hidden" name="rawId" value="@rawId" />
+                    <input type="hidden" name="type" value="@type" />
+                    <input type="hidden" name="UserId" value="@Model.UserId" />
+                    <input type="hidden" name="attestationObject" value="@attestationObject" />
+                    <input type="hidden" name="clientDataJSON" value="@clientDataJSON" />
+                    <input type="hidden" name="UserAgent" value="@userAgent" />
+                    <div class="form-group">
+                        <label for="passkeyPassword">Passkey Password:</label>
+                        <input type="password" id="passkeyPassword" name="passkeyPassword" class="form-control" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS Styles -->
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    .dashboard-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-item {
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        color: white;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .modal-content {
+        border-radius: 8px;
+    }
+
+    .modal-header {
+        background-color: #f1f1f1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-title {
+        font-size: 18px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+</style>

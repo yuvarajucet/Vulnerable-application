@@ -1,0 +1,42 @@
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4" style="background-color: #1f1f1f; color: #eaeaea; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+                <div class="card-header text-center" style="background-color: #333; color: #ffcc00; border-radius: 8px 8px 0 0;">
+                    <h3>User Login</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" id="loginForm">
+                        <div class="mb-4">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required style="background-color: #444; color: #eaeaea; border: 1px solid #666;">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required style="background-color: #444; color: #eaeaea; border: 1px solid #666;">
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success w-100" style="color: #00ff00; border-color: #00ff00; transition: color 0.3s; text-decoration: none;" 
+                            onmouseover="this.style.color='white';" onmouseout="this.style.color='#00ff00';">
+                            Log In
+                        </button>
+                    </form>
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            Forgot your password? <a href="#" class="text-primary">Reset it</a>
+                        </small>
+                        <br>
+                        <small class="text-muted">
+                            Need an account? <a href="/register" class="text-primary">Register</a>
+                        </small>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between" style="background-color: #2a2a2a; border-radius: 0 0 8px 8px;">
+                    <div class="text-danger">@ViewBag.ErrorMessage</div>
+                </div>
+            </div>`
+        </div>
+    </div>
+</div>

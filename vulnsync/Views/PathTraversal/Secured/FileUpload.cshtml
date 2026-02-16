@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card p-4" style="background-color: #1f1f1f; color: #eaeaea; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+                <div class="card-header text-center" style="background-color: #333; color: #ffcc00; border-radius: 8px 8px 0 0;">
+                    <h3>Import Users from CSV</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="mb-4">
+                            <label for="file" class="form-label">Choose File</label>
+                            <input type="file" id="file" name="file" class="form-control" required style="background-color: #444; color: #eaeaea; border: 1px solid #666;">
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-success w-100 mb-3" style="color: #00ff00; border-color: #00ff00; transition: color 0.3s;"
+                                onmouseover="this.style.color='white';" onmouseout="this.style.color='#00ff00';">
+                            Upload File
+                        </button>
+                    </form>
+
+                    <div class="text-center">
+                        <a href="@Url.Action("SecuredDownloadFile", "PathTraversal", new { fileName = "Template.csv" })" class="btn btn-outline-info" style="color: #00ffff; border-color: #00ffff; transition: color 0.3s;"
+                           onmouseover="this.style.color='white';" onmouseout="this.style.color='#00ffff';">
+                            Download Template
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer" style="background-color: #2a2a2a; border-radius: 0 0 8px 8px;">
+                    <div class="text-danger">@ViewBag.ErrorMessage</div>
+                    <div class="text-success">@ViewBag.SuccessMessage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

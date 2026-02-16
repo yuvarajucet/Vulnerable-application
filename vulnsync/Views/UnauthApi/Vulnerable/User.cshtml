@@ -1,0 +1,65 @@
+@model IEnumerable<VulnSync.Controllers.Samples.Vulnerable.DashboardItem>
+@{
+    ViewData["Title"] = "User Dashboard";
+}
+
+<div class="container-fluid mt-4">
+    <!-- Header Section with Tenant Name -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <!-- Left spacer for alignment -->
+        <div style="width: 150px;"></div>
+        
+        <!-- Centered title and tenant name -->
+        <div class="text-center">
+            <h2 class="mb-2">User Dashboard</h2>
+            <p class="text-muted mb-0">Tenant: @ViewBag.TenantName</p>
+        </div>
+        
+        <!-- Logout button on right -->
+        <div style="width: 150px;" class="text-end">
+            <a href="/vulnerable/unauthapi/logout" class="btn btn-outline-danger">
+                <i class="bi bi-box-arrow-right me-2"></i>Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Dashboard Items Table -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Dashboard Item</th>
+                                    <th class="text-center">Count</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <i class="bi bi-grid me-2"></i>
+                                            @item.Name
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-primary">@item.Count</span>
+                                        </td>
+                                        <td class="text-end">
+                                            <button class="btn btn-sm btn-outline-secondary">
+                                                <i class="bi bi-eye"></i> View
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

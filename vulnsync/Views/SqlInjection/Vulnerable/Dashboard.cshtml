@@ -1,0 +1,138 @@
+﻿@model VulnSync.Models.IDOR.User
+
+<!-- User Dashboard Container -->
+<div class="dashboard-container">
+    <div class="card">
+        <h2>User Dashboard</h2>
+
+        <div class="button-group">
+            <a href="" class="btn btn-info">License Details</a>
+            <a href="" class="btn btn-warning">Ticket Follow-up</a>
+            <div class="actions">
+                <form asp-controller="SqlInjection" asp-action="Profile" method="get" class="edit-button-form">
+                    <input type="hidden" name="userName" value="@Model.Username" />
+                    <button type="submit" class="btn btn-primary">Profile details</button>
+                </form>
+                <a href="@Url.Action("VulnerableLogout", "SqlInjection")" class="btn btn-danger logout-btn">Logout</a>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Custom CSS Styles -->
+<style>
+    /* General Styling */
+    .dashboard-container {
+        max-width: 1200px;
+        margin: 30px auto;
+        padding: 40px;
+        background-color: #f8f9fa;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #444;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    /* Button Group */
+    .button-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        text-decoration: none;
+        color: #fff;
+        border-radius: 30px;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, background-color 0.3s ease;
+    }
+
+    .btn-info {
+        background-color: #4e73df;
+    }
+
+    .btn-warning {
+        background-color: #f39c12;
+    }
+
+    .btn-info:hover {
+        background-color: #3c6bc4;
+        transform: translateY(-4px);
+    }
+
+    .btn-warning:hover {
+        background-color: #e67e22;
+        transform: translateY(-4px);
+    }
+
+    /* Actions Section */
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .edit-button-form button {
+        padding: 12px 25px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        border-radius: 30px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.3s, background-color 0.3s ease;
+    }
+
+    .edit-button-form button:hover {
+        background-color: #218838;
+        transform: translateY(-4px);
+    }
+
+    /* Logout Button */
+    .logout-btn {
+        padding: 12px 25px;
+        background-color: #e74a3b;
+        text-decoration: none;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: center;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, background-color 0.3s ease;
+    }
+
+    .logout-btn:hover {
+        background-color: #c0392b;
+        transform: translateY(-4px);
+    }
+
+    /* Hover Effects */
+    .btn:hover, .edit-button-form button:hover, .logout-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+</style>

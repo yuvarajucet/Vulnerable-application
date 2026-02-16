@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/UserEnumeration.css">
+    <title>Login Form</title>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    
+    <!-- Form for username and password -->
+    <form asp-controller="SSRF" asp-action="SSRFLogin" method="post" id="loginForm">
+        <label for="username">Username:</label>
+        <!-- Input names are critical to binding with controller action parameters -->
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit" class="attack">Login</button>
+        <div style="color:red">@ViewBag.Error</div>
+    </form>
+</div>
+
+</body>
+</html>

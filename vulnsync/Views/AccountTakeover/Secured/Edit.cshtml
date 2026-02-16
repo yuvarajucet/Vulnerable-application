@@ -1,0 +1,21 @@
+﻿@model VulnSync.Models.AccountTakeover.User
+
+<h2>Edit User Details</h2>
+
+<form asp-controller="AccountTakeover" asp-action="SecuredSaveUserDetail" method="post">
+    <input type="hidden" asp-for="UserId" />
+    
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input type="email" asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PersonalDetails"></label>
+        <textarea asp-for="PersonalDetails" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="@Url.Action("Dashboard", "AccountTakeover", new { id = Model.UserId })" class="backbtn">Back</a>
+    
+</form>

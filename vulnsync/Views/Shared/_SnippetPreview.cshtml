@@ -1,0 +1,19 @@
+﻿@model VulnSync.Models.BugDetailResponseModel
+
+<div id="snippet-content" style="width: 70%">
+</div>
+
+<script>
+    let content = `@Html.Raw(Model.SnippetContent)`
+    document.getElementById("snippet-content").innerHTML = content
+
+    // Find snippet content and override the style
+    let codeSnippet = $("#snippet-section").find("pre");
+    codeSnippet.each(function (index, element) {
+        $(element).parent().css({
+            "padding": "10px",
+            "border-radius": "10px",
+            "overflow-x": "auto",
+        });
+    });
+</script>

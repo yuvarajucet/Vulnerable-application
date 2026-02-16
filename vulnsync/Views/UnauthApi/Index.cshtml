@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Unauthenticated API Access";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h2 class="mb-4">User Permission Mocked</h2>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="@ViewBag.AdminLink" class="btn btn-primary btn-lg">
+                    <i class="fas fa-user-shield me-2"></i>Admin
+                </a>
+                <a href="@ViewBag.UserLink" class="btn btn-success btn-lg">
+                    <i class="fas fa-user me-2"></i>User
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

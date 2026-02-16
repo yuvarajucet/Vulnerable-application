@@ -1,0 +1,48 @@
+﻿@model VulnSync.Models.BugDetailResponseModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<div class="container-fluid d-flex flex-column" style="height: 80vh;">
+    <div id="header-section" class="d-flex align-items-center justify-content-center shadow-lg" style="height: 10%; background-color: #1F3A52; border-bottom: 4px solid #1ABC9C;">
+        @await Html.PartialAsync("_Header")
+    </div>
+
+    <div class="d-flex flex-grow-1" style="height: 90%;">
+        <div id="playarea-section" class="d-flex p-3 flex-column shadow-lg" style="width: 40%; background-color: #3498DB; color: #FFF; border-radius: 10px; border-right: 4px solid #1ABC9C;">
+            <div>
+                @await Html.PartialAsync("_BugDescription", @Model)
+            </div>
+            <div class="mt-4 d-flex justify-content-center">
+                <a class="btn btn-warning btn-lg" href="@Model.PlayAreaLink" target="_blank" style="border-radius: 30px; padding: 12px 30px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); transition: transform 0.2s;">
+                    ⚡ Dive In ⚡
+                </a>
+            </div>
+        </div>
+
+        <div id="snippet-section" class="d-flex align-items-start justify-content-center p-3 shadow-lg" style="width: 60%; background-color: #c6ebf5; color: #2C3E50; overflow-y: auto; border-radius: 10px;">
+            @await Html.PartialAsync("_snippetPreview", @Model)
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $.ajax({
+        type: "GET",
+        url: '@Url.Action("GetBugsList", "Home")',
+        success: function (data) {
+            let dropDown = document.getElementById("bug");
+            data.forEach(bug => {
+                let option = document.createElement("option");
+                option.value = bug.value;
+                option.text = bug.name;
+                dropDown.appendChild(option);
+            });
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
+</script>

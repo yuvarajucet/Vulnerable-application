@@ -1,0 +1,32 @@
+﻿.login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-left: 37rem !important;
+    margin-top: 4rem !important;
+    margin-bottom: 5rem !important;
+}
+label, input, .attack {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.attack {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.message {
+    margin-top: 10px;
+    font-weight: bold;
+}

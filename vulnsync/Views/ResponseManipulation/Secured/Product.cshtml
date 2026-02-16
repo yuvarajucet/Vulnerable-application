@@ -1,0 +1,37 @@
+﻿@model IEnumerable<VulnSync.Models.Vulnerable.ResponseManipulation.Product>
+
+<link rel="stylesheet" href="~/css/ResponseManipulation.css" />
+<div class="header-container header">
+    <h1>Response Manipulation E-commerce</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="@Url.Action("SecuredProduct", "ResponseManipulation")">Products</a></li>
+            <li><a href="@Url.Action("SecuredCart", "ResponseManipulation")">Cart</a></li>
+            <li><a href="/Contact">Contact Us</a></li>
+            <li><a href="/About">About Us</a></li>
+        </ul>
+    </nav>
+</div>
+<h2>Products</h2>
+<div class="product-list">
+    @if (!Model.Any())
+    {
+        <p>No products available.</p>
+    }
+    else
+    {
+        foreach (var product in Model)
+        {
+            <div class="product-card">
+                <h3>@product.Name</h3>
+                <p>@product.Description</p>
+                <p class="price">Price: $@product.Price</p>
+                <form asp-controller="ResponseManipulation" asp-action="SecuredAddToCart" asp-route-id="@product.Id" method="post">
+                    <button type="submit" class="btn">Add to Cart</button>
+                </form>
+            </div>
+        }
+    }
+</div>
+<a href="@Url.Action("SecuredCart", "ResponseManipulation")" class="btn">View Cart</a>

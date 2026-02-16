@@ -1,0 +1,159 @@
+﻿@model VulnSync.Models.RoleManipulation.User
+
+<!-- User Dashboard Container -->
+<div class="dashboard-container">
+    <div class="card">
+        <h2>User Dashboard</h2>
+
+        <div class="user-info">
+            <div class="info-item">
+                <strong>ID:</strong> @Model.Id
+            </div>
+            <div class="info-item">
+                <strong>Username:</strong> @Model.Username
+            </div>
+            <div class="info-item">
+                <strong>Email:</strong> @Model.Email
+            </div>
+            <div class="info-item">
+                <strong>Password:</strong> @Model.Password
+            </div>
+        </div>
+
+        <!-- Buttons: Edit and Logout -->
+        <div class="actions">
+            <a href="@Url.Action("Dashboard", "SSRF")" class="backbtn">Back</a>
+        </div>
+    </div>
+</div>
+
+<!-- Custom CSS Styles -->
+<style>
+    /* Global Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Dashboard Container */
+    .dashboard-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .card {
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .user-info {
+        margin-bottom: 30px;
+    }
+
+    .info-item {
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .info-item strong {
+        color: #555;
+    }
+
+    /* Action Buttons Styles */
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    .actions .btn {
+        font-size: 16px;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    /* Edit Button Styling */
+    .actions .edit-button-form .btn {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        width: 127%; /* Ensures the button doesn't overflow */
+    }
+
+    /* Logout Button Styling */
+    .actions .logout-btn {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        width: 16%;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border: none;
+        color: white;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: white;
+    }
+
+    .btn-close {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+    }
+
+    /* Modal Styles */
+    .modal-content {
+        border-radius: 8px;
+    }
+
+    .modal-header {
+        background-color: #f1f1f1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .modal-title {
+        font-size: 18px;
+        color: #333;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+</style>

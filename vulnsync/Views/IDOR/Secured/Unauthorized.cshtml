@@ -1,0 +1,22 @@
+@{
+ViewData["Title"] = "Unauthorized Access";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-danger">
+                <div class="card-header bg-danger text-white text-center">
+                    <h3>Unauthorized Access</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p class="lead text-danger">
+                        You do not have permission to access this page.
+                    </p>
+                    <p>Please make sure you're logged in with the correct account.</p>
+                    <a href="@Url.Action("Login", "IDOR")" class="btn btn-primary mt-3">Go to Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

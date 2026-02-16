@@ -1,0 +1,32 @@
+﻿@model VulnSync.Models.Vulnerable.InfoDisclosure.CardDetails
+@{
+    ViewData["Title"] = "Account Info";
+}
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <form method="get" action="/vulnerable/infodisclosure/submitform" class="shadow-lg p-4" style="border-radius: 10px; width: 400px; background-color: #f9f9f9;">
+        <h4 class="mb-4 text-center">Enter Card Details</h4>
+        
+        <div class="mb-3">
+            <label for="nameOnCard" class="form-label">Name on Card</label>
+            <input type="text" class="form-control" id="nameOnCard" name="NameOnCard" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="cardNumber" class="form-label">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" name="CardNumber" maxlength="16" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="expiryDate" class="form-label">Expiration Date</label>
+            <input type="month" class="form-control" id="expiryDate" name="ExpiryDate" required />
+        </div>
+
+        <div class="mb-3">
+            <label for="cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cvv" name="CVV" maxlength="3" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,14 @@
+﻿<link rel="stylesheet" href="~/css/ResponseManipulation.css">
+@{
+    // Retrieve the PaymentSuccess status from ViewData and ensure it is converted to a proper boolean value
+    bool paymentSuccess = ViewData["PaymentSuccess"] != null && (bool)ViewData["PaymentSuccess"];
+}
+
+<form id="postRedirectForm" action="@Url.Action("CompleteOrder", "ResponseManipulation")" method="post">
+    <input type="hidden" name="success" value="@(paymentSuccess ? "true" : "false")" />
+</form>
+
+<script>
+    // Automatically submit the form on page load
+    document.getElementById('postRedirectForm').submit();
+</script>

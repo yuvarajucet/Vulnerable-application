@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px;">
+        <h3 class="text-center mb-4" style="color: #0056b3;">Login</h3>
+        
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+        </div>
+
+        <div id="error-message" class="text-danger text-center">
+        </div>
+
+        <button id="login-btn" type="button" class="btn btn-success w-100">Login</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#login-btn').on('click', function () {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var redirectUrl = getQueryParam('redirectUrl');
+
+            $.ajax({
+                url: '/secured/openredirect/login',
+                type: 'POST',
+                data: JSON.stringify({ Username: username, Password: password, ReturnUrl: redirectUrl }),
+                contentType: 'application/json',
+                success: function (response) {
+                    debugger;
+                    if (response.success) {
+                        if (response.isValidurl) {
+                            window.location.href = response.redirectUrl;
+                        } else {
+                            window.location.href = "warning"
+                        }
+                    } else {
+                        $('#username').val("");
+                        $('#password').val("");
+                        $('#error-message').text(response.errorMessage || 'Login failed');
+                    }
+                },
+                error: function () {
+                    $('#error-message').text('An error occurred. Please try again.');
+                }
+            });
+        });
+    });
+
+    function getQueryParam(param) {
+        let urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+</script>

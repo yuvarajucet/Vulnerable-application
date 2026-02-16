@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Details</title>
+    <style>
+        .container {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Company Details</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Company Name</th>
+                    <td>Example Corp</td> <!-- Replace with dynamic value if available -->
+                </tr>
+                <tr>
+                    <th>Account Number</th>
+                    <td>1234567890</td> <!-- Replace with dynamic value if available -->
+                </tr>
+                <tr>
+                    <th>Total Income</th>
+                    <td>$500,000</td> <!-- Replace with dynamic value if available -->
+                </tr>
+                <tr>
+                    <th>Number of Employees</th>
+                    <td>250</td> <!-- Replace with dynamic value if available -->
+                </tr>
+                <tr>
+                    <th>Headquarters Address</th>
+                    <td>123 Business Rd, Metropolis, USA</td> <!-- Replace with dynamic value if available -->
+                </tr>
+                <tr>
+                    <th>Contact Email</th>
+                    <td>contact@example.com</td> <!-- Replace with dynamic value if available -->
+                </tr>
+                <tr>
+                    <th>Tax ID</th>
+                    <td>987654321</td> <!-- Replace with dynamic value if available -->
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="@Url.Action("SecuredAdminBack", "RoleManipulation")" class="btn-back">Back</a> <!-- Adjust URL based on your routing -->
+    </div>
+
+</body>
+</html>

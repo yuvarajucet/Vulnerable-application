@@ -1,0 +1,63 @@
+﻿@model VulnSync.Models.Vulnerable.InfoDisclosure.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card rounded-3">
+                <div class="card-header text-center bg-success">
+                    <h4>Login</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" class="form-control rounded-3" placeholder="Enter username" name="username"/>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control rounded-3" type="password" placeholder="Enter password" name="password" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <br/>
+                    <div class="form-group form-check">
+                        <input asp-for="RememberMe" class="form-check-input" />
+                        <label asp-for="RememberMe" class="form-check-label">Remember me</label>
+                    </div>
+                    <br/>
+                    <button id="login" class="btn btn-primary btn-block rounded-3">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#login').click(function () {
+                let username = $('input[name="username"]').val();
+                let password = $('input[name="password"]').val();
+                $.ajax({
+                    url: '/secured/InfoDisclosure/secureduserlogin',
+                    type: 'POST',
+                    data: {
+                        username: username,
+                        password: password
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = '@Url.Action("SecuredUserProfile", "InfoDisclosure")';
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

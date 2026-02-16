@@ -1,0 +1,141 @@
+@using VulnSync.Models
+@model IEnumerable<VulnSync.Models.TenantInfo>
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid mt-4">
+    <!-- Header Section -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="flex-grow-1 d-flex justify-content-between align-items-center">
+            <h2>Admin Dashboard</h2>
+            <div>
+                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#createTenantModal">
+                    <i class="bi bi-plus-circle me-2"></i>Create New Tenant
+                </button>
+                <a href="/vulnerable/unauthapi/logout" class="btn btn-outline-danger">
+                    <i class="bi bi-box-arrow-right me-2"></i>Logout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Tenant Name</th>
+                            <th>Super Admin</th>
+                            <th>Tenant ID</th>
+                            <th>Created Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var tenant in Model.Cast<VulnSync.Models.TenantInfo>())
+                        {
+                            <tr>
+                                <td>@tenant.TenantName</td>
+                                <td>@tenant.SuperAdminName</td>
+                                <td>@tenant.TenantId</td>
+                                <td>@tenant.CreatedDate.ToString("MMM dd, yyyy")</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Tenant Modal -->
+<div class="modal fade" id="createTenantModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Tenant</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="createTenantForm">
+                    <div class="mb-3">
+                        <label class="form-label">Tenant Name</label>
+                        <input type="text" class="form-control" name="tenantName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Super Admin Name</label>
+                        <div class="input-group">
+                            <select class="form-select" id="existingSuperAdmin" onchange="updateSuperAdminInput(this.value)">
+                                <option value="">Select Existing Admin</option>
+                                @foreach (var admin in ViewBag.ExistingSuperAdmins)
+                                {
+                                    <option value="@admin">@admin</option>
+                                }
+                            </select>
+                            <input type="text" class="form-control" name="superAdminName" id="superAdminInput" required 
+                                   placeholder="Or enter new admin name">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Database Name</label>
+                        <input type="text" class="form-control" name="databaseName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Server URL</label>
+                        <input type="text" class="form-control" name="serverUrl" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="createTenant()">Create Tenant</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateSuperAdminInput(value) {
+            document.getElementById('superAdminInput').value = value;
+        }
+
+        function createTenant() {
+            const form = document.getElementById('createTenantForm');
+            const formData = {
+                tenantName: form.elements['tenantName'].value,
+                superAdminName: form.elements['superAdminName'].value,
+                databaseName: form.elements['databaseName'].value,
+                serverUrl: form.elements['serverUrl'].value
+            };
+
+            fetch('/vulnerable/unauthapi/create-tenant', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error creating tenant');
+            });
+        }
+    </script>
+} 

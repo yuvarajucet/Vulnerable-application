@@ -1,0 +1,30 @@
+﻿@model VulnSync.Models.AccountTakeover.User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passkey Login</title>
+</head>
+<body>
+<form asp-controller="AccountTakeover" asp-action="PasskeyLoginCall" method="post" id="passkeyForm">
+    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="rawId" value="@Model.rawId" />
+    <input type="hidden" name="type" value="@Model.type" />
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    <input type="hidden" name="Passkeypassword" value="@Model.Passkeypassword" />
+    <input type="hidden" name="attestationObject" value="@Model.attestationObject" />
+    <input type="hidden" name="clientDataJSON" value="@Model.clientDataJSON" />
+    <input type="hidden" name="UserAgent" value="@Model.UserAgent"/>
+    <button type="submit" id="submitPasskeyLogin">Submit</button>
+</form>
+
+<script type="text/javascript">
+        // Auto-submit the form when the page loads
+        window.onload = function() {
+            document.getElementById("passkeyForm").submit();
+        };
+    </script>
+</body>
+</html>

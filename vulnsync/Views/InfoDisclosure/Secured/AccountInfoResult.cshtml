@@ -1,0 +1,27 @@
+﻿@model VulnSync.Models.Vulnerable.InfoDisclosure.CardDetails
+@{
+    ViewData["Title"] = "Account Info";
+}
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="shadow-lg p-4" style="border-radius: 10px; background-color: #f9f9f9;">
+        <h4 class="mb-4 text-center">Submitted Card Details</h4>
+        <table class="table table-bordered">
+            <tr>
+                <th>Name on Card</th>
+                <td>@Model.NameOnCard</td>
+            </tr>
+            <tr>
+                <th>Card Number</th>
+                <td>@Model.CardNumber</td>
+            </tr>
+            <tr>
+                <th>Expiration Date</th>
+                <td>@Model.ExpiryDate</td>
+            </tr>
+            <tr>
+                <th>CVV</th>
+                <td>@Model.CVV</td>
+            </tr>
+        </table>
+    </div>
+</div>

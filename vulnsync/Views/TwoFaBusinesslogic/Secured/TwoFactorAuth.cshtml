@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Two Factor Authentication";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Two Factor Authentication</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/Secured/TwoFABusinesslogic/SecuredValidateTwoFactor" method="post">
+                        <div class="form-group mb-3">
+                            <label for="code">Enter 2FA Code</label>
+                            <input type="text" class="form-control" id="code" name="code" required>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="rememberDevice" name="rememberDevice">
+                            <label class="form-check-label" for="rememberDevice">Remember this device (Skip 2FA next time)</label>
+                        </div>
+                        <div class="text-danger">
+                            <p>@TempData["Error"]</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Verify</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

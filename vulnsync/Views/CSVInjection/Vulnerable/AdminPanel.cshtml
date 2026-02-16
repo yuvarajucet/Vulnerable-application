@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4" style="background-color: #1f1f1f; color: #eaeaea; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+                <div class="card-header text-center" style="background-color: #333; color: #ffcc00; border-radius: 8px 8px 0 0;">
+                    <h3>Admin Panel - Feedback Management</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Feedback Table and other content here -->
+
+                    <!-- Export to CSV Button -->
+                    <div class="mt-4 flex justify-center">
+                        <a href="@Url.Action("ExportFeedbackCSV", "CSVInjection")" class="btn btn-outline-success w-100"
+                            style="color: #00ff00; border-color: #00ff00; transition: color 0.3s; text-decoration: none;"
+                            onmouseover="this.style.color='white';" onmouseout="this.style.color='#00ff00';">
+                            Export Feedback as CSV
+                        </a>
+                    </div>
+
+                    <!-- Back to Feedback Button -->
+                    <div class="mt-3 flex justify-center">
+                        <a href="@Url.Action("SubmitFeedback", "CSVInjection")" class="btn btn-outline-info w-100"
+                            style="color: #00ccff; border-color: #00ccff; transition: color 0.3s; text-decoration: none;"
+                            onmouseover="this.style.color='white';" onmouseout="this.style.color='#00ccff';">
+                            Back to Feedback Form
+                        </a>
+                    </div>
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-info mt-3" role="alert" style="background-color: #333; color: #ffcc00; border: 1px solid #444;">
+                            @ViewBag.Message
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+﻿@model VulnSync.Models.RoleManipulation.User
+
+<h2>Edit User Details</h2>
+
+<form asp-controller="CookieManipulation" asp-action="SaveUser" method="post" class="edit-form">
+    <input type="hidden" asp-for="Id" />
+    
+    <div class="form-group">
+        <label asp-for="Email" class="form-label"></label>
+        <input type="email" asp-for="Email" class="form-control" placeholder="Enter your email" />
+    </div>
+
+    <div class="form-footer">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="@Url.Action("Dashboard", "CookieManipulation", new { id = Model.Id })" class="backbtn">Back</a>
+    </div>
+</form>
+
+<style>
+    /* Basic form styling */
+    .edit-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        color: #343a40;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+    .form-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px 20px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .backbtn {
+        text-decoration: none;
+        font-size: 16px;
+        color: #007bff;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .backbtn:hover {
+        color: #0056b3;
+    }
+    
+</style>

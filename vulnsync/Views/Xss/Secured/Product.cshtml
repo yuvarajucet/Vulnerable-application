@@ -1,0 +1,129 @@
+﻿@model VulnSync.Models.XSS.OnlineProduct
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Html.Encode(Model.Name) - Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .product-card {
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .product-card h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .product-card p {
+            color: #666;
+        }
+        .price {
+            font-size: 1.5em;
+            color: #27ae60;
+            margin: 15px 0;
+        }
+        .comments-section {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .comment {
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #3498db;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-card">
+            <!-- Product Image with fallback to a default image if none exists -->
+            <img src="@Model.ImageUrl" alt="@Html.Encode(Model.Name)">
+            <h2>@Html.Encode(Model.Name)</h2>
+            <p>@Html.Encode(Model.Description)</p>
+            <div class="price">$@Html.Encode(Model.Price)</div>
+        </div>
+
+        <h3>Comments</h3>
+        <div class="comments-section">
+            @if (Model.Comments != null && Model.Comments.Any())
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    <!-- Securely render comment -->
+                    <div class="comment">
+                        @Html.Encode(comment)
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No comments yet.</p>
+            }
+        </div>
+
+        <!-- Add Comment Form -->
+        <form method="post" action="@Url.Action("SecuredAddComment", "Xss", new { id = Model.Id })">
+            <textarea name="comment" placeholder="Add your comment here..." required></textarea>
+            <button type="submit">Submit Comment</button>
+        </form>
+
+        <a href="@Url.Action("SecuredIndex", "Xss")">Back to Product List</a>
+    </div>
+</body>
+</html>

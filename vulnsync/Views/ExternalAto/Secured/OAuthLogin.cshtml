@@ -1,0 +1,50 @@
+@{
+    ViewData["Title"] = "OAuth";
+}
+
+<style>
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    
+    .account:hover {
+        background-color: #f8f9fa;
+    }
+</style>
+<div class="container card-container">
+    <div class="card text-center mb-3" style="width: 18rem; cursor: pointer;">
+        <div class="card-body account">
+            <h5 class="card-title" id="username" >hacker</h5>
+            <p class="card-text" id="email" >hacker@example.com</p>
+        </div>
+    </div>
+    
+    <div class="card text-center mb-3" style="width: 18rem; cursor: pointer">
+        <div class="card-body account">
+            <h5 class="card-title" id="username" >victim</h5>
+            <p class="card-text" id="email">victim@example.com</p>
+        </div>
+    </div>
+    
+    <div class="card text-center mb-3" style="width: 18rem; cursor: pointer;">
+        <div class="card-body account">
+            <h5 class="card-title" id="username" >user</h5>
+            <p class="card-text" id="email" >user@example.com</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let accounts = document.querySelectorAll(".account");
+    accounts.forEach(account => {
+        account.addEventListener("click", function() {
+            let username = account.querySelector("#username").textContent;
+            let email = account.querySelector("#email").textContent;
+            window.opener.postMessage(JSON.stringify({ username: username, email: email }), window.location.origin);
+        });
+    });
+</script>

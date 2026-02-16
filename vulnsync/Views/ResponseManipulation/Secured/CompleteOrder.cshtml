@@ -1,0 +1,52 @@
+﻿@model VulnSync.Models.Vulnerable.ResponseManipulation.OrderSummaryViewModel
+
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/ResponseManipulation.css" />
+    <title>@ViewData["Title"] - Response Manipulation</title>
+</head>
+<body>
+<div class="header-container">
+    <h1>Response Manipulation E-commerce</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="@Url.Action("SecuredProduct", "ResponseManipulation")">Products</a></li>
+            <li><a href="@Url.Action("SecuredCart", "ResponseManipulation")">Cart</a></li>
+            <li><a href="/Contact">Contact Us</a></li>
+            <li><a href="/About">About Us</a></li>
+        </ul>
+    </nav>
+</div>
+<main class="final">
+    <h2>Thank You for Your Order!</h2>
+    <p>Your order has been processed successfully.</p>
+
+    <h3>Order Summary</h3>
+    <p><strong>Total Items:</strong> @Model.TotalItems</p>
+    <p><strong>Total Price:</strong> $@Model.TotalPrice</p>
+
+    <h4>Billing Information</h4>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Address:</strong> @Model.Address</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+
+    <h4>Your Items:</h4>
+    <ul>
+        @foreach (var item in Model.OrderItems)
+        {
+        <li>
+            <strong>@item.Product.Name</strong> - Quantity: @item.Quantity, Total: $@(item.Quantity * item.Product.Price)
+        </li>
+        }
+    </ul>
+    
+    <a href="@Url.Action("SecuredProduct", "ResponseManipulation")" class="btn">Continue Shopping</a>
+</main>
+</body>
+</html>

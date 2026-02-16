@@ -1,0 +1,25 @@
+﻿## Common Sources of Information Disclosure:
+- **URL Parameters**
+  - URL parameters may expose sensitive data to unauthorized users.
+- **Error Messages**
+  - Detailed error messages can reveal sensitive information about the application's internal workings.
+- **Debug Logs**
+  - Debug logs may contain sensitive data that can be exploited by attackers.
+- **Configuration Files**
+  - Configuration files may contain credentials or other sensitive information.
+- **Improper Access Control**
+  - Inadequate access controls can allow unauthorized users to access sensitive data.
+- **Directory Listings**
+  - Directory listings can expose sensitive files or directories to attackers.
+- **Metadata**
+  - Metadata in files or documents may contain sensitive information.
+- **API Endpoints**
+  - Exposed API endpoints may leak sensitive data to unauthorized users.
+- **HTTP Headers**
+  - HTTP headers may contain sensitive information that can be intercepted by attackers.
+- **Source Code**
+  - Source code may contain hard-coded credentials or other sensitive data.
+- **Database Records**
+  - Database records may contain sensitive information that can be accessed by unauthorized users.
+- **Logs**
+  - Application logs may contain sensitive data that can be exploited by attackers.

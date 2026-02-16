@@ -1,0 +1,31 @@
+{
+  "tenants": [
+    {
+      "tenantName": "AppSec",
+      "superAdminName": "Jane Smith",
+      "tenantId": "tenant-001",
+      "createdDate": "2024-01-15T10:00:00",
+      "connectionString": "Server=http://vulnsync.com;Database=dashboards;Trusted_Connection=True;MultipleActiveResultSets=true",
+      "databaseName": "dashboards",
+      "serverUrl": "http://vulnsync.com"
+    },
+    {
+      "tenantName": "NetworkSec",
+      "superAdminName": "Jane Smith",
+      "tenantId": "tenant-002",
+      "createdDate": "2024-02-20T14:30:00",
+      "connectionString": null,
+      "databaseName": null,
+      "serverUrl": null
+    },
+    {
+      "tenantName": "VAPT",
+      "superAdminName": "Mike Johnson",
+      "tenantId": "tenant-003",
+      "createdDate": "2024-03-01T09:15:00",
+      "connectionString": null,
+      "databaseName": null,
+      "serverUrl": null
+    }
+  ]
+}

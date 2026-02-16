@@ -1,0 +1,22 @@
+@keyframes demobtn {
+    0% {
+        left: 485px;
+    }
+    100% {
+        left: 700px;
+    }
+}
+
+#click {
+    position: absolute;
+    top: 230px;
+    z-index: -1;
+    animation-name: demobtn;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+.youtube {
+    z-index: 2;
+    opacity: 0.1;
+}

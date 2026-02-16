@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Secured Search Example";
+    string renderedTemplate = ViewBag.RenderedTemplate as string;
+    string template = ViewBag.Template as string;
+}
+
+<div class="container mt-4">
+    <h2>Secured Search</h2>
+    <form method="get" asp-action="SecuredSearch" asp-controller="SSTI" class="mb-3">
+        <input type="text" name="search" class="form-control" placeholder="Search..." />
+        <button type="submit" class="btn btn-primary mt-2">Search</button>
+    </form>
+
+
+    @if (!string.IsNullOrEmpty(renderedTemplate))
+    {
+        <div class="alert alert-danger mt-3">
+            <strong>Search for:</strong>
+            <pre>@Html.Raw(renderedTemplate)</pre>
+        </div>
+        <div class="alert alert-success mt-3">
+            <strong>Available Products:</strong>
+            <ul>
+                @if (!string.IsNullOrEmpty(ViewBag.SearchedItem))
+                {
+                    <li>@Html.Raw(ViewBag.SearchedItem)</li>
+                }
+                else
+                {
+                    <strong class="text-danger">No products found!</strong>
+                }
+            </ul>
+        </div>
+    }
+</div>

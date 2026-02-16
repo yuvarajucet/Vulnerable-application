@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Admin Dashboard</title>
+    <style>
+        .dashboard-container {
+            text-align: center;
+            margin-left: 27rem;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
+        .dashboard-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .company-details-btn {
+            background-color: #28a745;
+        }
+        .company-details-btn:hover {
+            background-color: #218838;
+        }
+        .logout-btn {
+            background-color: #dc3545;
+        }
+        .logout-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Secure Admin Dashboard Container -->
+    <div class="dashboard-container">
+        <h2>Admin Dashboard</h2>
+
+        <!-- User Details Button -->
+        <form asp-controller="RoleManipulation" asp-action="SecuredUserDetails" method="get">
+            <button type="submit" class="btn">User Details</button>
+        </form>
+
+        <!-- Company Details Button -->
+        <form asp-controller="RoleManipulation" asp-action="SecuredCompanyDetails" method="get">
+            <button type="submit" class="btn company-details-btn">Company Details</button>
+        </form>
+
+        <!-- Logout Button -->
+        <form asp-controller="RoleManipulation" asp-action="SecuredLogout" method="post">
+            <button type="submit" class="btn logout-btn">Logout</button>
+        </form>
+    </div>
+
+</body>
+</html>

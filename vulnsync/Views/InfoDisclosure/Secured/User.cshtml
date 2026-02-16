@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "User";
+    var currentUsername = ViewBag.Username;
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h1>Welcome!</h1>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card h-100 rounded-3 shadow-sm">
+                <div class="card-header text-center bg-success">
+                    <h5>User Profile</h5>
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <h1>@currentUsername</h1>
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <a href="@Url.Action("SecuredAccountInfo", "InfoDisclosure")" target="_blank">Update account Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card h-100 rounded-3 shadow-sm">
+                <div class="card-header text-center bg-success">
+                    <h5>About</h5>
+                </div>
+                <div class="card-body">
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div id="account-info">
+                    
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary">Get Account Info</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $.ajax({
+                url: "@Url.Action("SecuredGetAccountInformation", "InfoDisclosure")",
+                type: "POST",
+                data: 
+                {
+                    username: "@currentUsername"
+                },
+                success: function (data) {
+                    let info = JSON.parse(data);
+                    let table = "<table class='table table-bordered'>";
+                    table += "<tr><th>Name on Card</th><td>" + '@currentUsername' + "</td></tr>";
+                    table += "<tr><th>Card Number</th><td>" + info.accountNumber + "</td></tr>";
+                    table += "<tr><th>Amount</th><td>" + info.amount + "</td></tr>";
+                    table += "<tr><th>PIN</th><td>" + info.pinNumber + "</td></tr>";
+                    table += "</table>";
+                    $("#account-info").html(table);
+                }
+            });
+        });
+    });
+
+</script>

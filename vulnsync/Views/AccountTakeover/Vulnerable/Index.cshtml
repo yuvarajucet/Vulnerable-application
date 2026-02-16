@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/AccountTakeover.css">
+    <title>Login Form</title>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    
+    <!-- Form for username and password -->
+    <form asp-controller="AccountTakeover" asp-action="AccountTakeoverlogin" method="post" id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required placeholder="Enter your username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password">
+        <div style="color:red">@ViewBag.Error</div>
+        <button type="submit" class="attack">Login</button>
+        
+    </form>
+
+    <!-- Passkey Login Button -->
+    <div>
+        <button type="button" id="passkeyLoginButton" class="attack">Login with Passkey</button>
+    </div>
+
+    <!-- Social Login Section -->
+    <div class="social-login">
+        <h3>Or login with</h3>
+        <button type="button" class="social-button">Login with Google</button>
+        <button type="button" class="social-button">Login with Facebook</button>
+        <button type="button" class="social-button">Login with Twitter</button>
+    </div>
+</div>
+
+<!-- Passkey Login Popup Modal -->
+<div id="passkeyModal" class="modal">
+    <div class="modal-content">
+        <h3>Passkey Login</h3>
+        <form asp-controller="AccountTakeover" asp-action="PasskeyLogin" method="post">
+        <label for="passkeypassword">Enter your account password:</label>
+        <input type="password" id="passkeypassword" name="passkeypassword" required placeholder="Enter your account password">
+         <button id="submitPasskeyLogin">Submit</button>
+        </form>
+        <button type="button" id="closeModal">Cancel</button>
+    </div>
+</div>
+
+<!-- JavaScript for Passkey Login Popup -->
+<script>
+    var modal = document.getElementById('passkeyModal');
+    var passkeyButton = document.getElementById('passkeyLoginButton');
+    var closeModalButton = document.getElementById('closeModal');
+
+    passkeyButton.onclick = function() {
+        modal.style.display = 'flex';
+    }
+
+    closeModalButton.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

